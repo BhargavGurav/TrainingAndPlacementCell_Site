@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block link-content %}
+<div class="main-content iiidiv">
+    <h3 class="text-center" style="font-family: cursive;">Welcome to the Training and Placement Section, GCOE, Jalgaon</h3>
+    <p class="mt-4">
+        <strong>Government College of Engineering, Jalgaon</strong> is one of the premier engineering College of North Maharashtra University, maintaining an excellent academic record. The Institute's Training and Placement Section provides a launch pad for students to make it to the best organizations in the fields of software, core industries, management, etc.
+        <br>
+        Our students have lived up to the expectations of organizations that visit the campus, looking for bright candidates to take up important and challenging responsibilities at their workplace. The TAPS boasts of maintaining an <b>excellent rapport with a wide spectrum of companies</b>  spread across various industry sectors. 
+        <br>
+        The Training and Placement cell is headed by Shri. M. S. Sadavarte(TPO) who is keen on encouraging students to prefer jobs that better suit their profile. The T&P cell has adequate infrastructure to accommodate all the activities related to the training and placement of GCOEJ students.
+    </p>
+    <div class="d-flex justify-content-center mt-5">
+        <div class="col-lg-7 col-md-8 col-sm-11 col-12">
+            <table class="table table-striped table-primary table-bordered" id="hometable">
+                <tr>
+                    <td colspan="2" class="text-center fw-bold">Training And Placement Cell</td>
+                </tr>
+                <tr>
+                    <td>Dean T& P and III Cell</td>
+                    <td>Shri. M. S. Sadavarte</td>
+                </tr>
+                <tr>
+                    <td>Mechanical Engineering</td>
+                    <td>Dr. S. A. Patil</td>
+                </tr>
+                <tr>
+                    <td>E&TC Engineering</td>
+                    <td>Shri. D. M. Gaikwad</td>
+                </tr>
+                <tr>
+                    <td>Instrumentation Engineering</td>
+                    <td>Shri. S. R. Shiledar</td>
+                </tr>
+                <tr>
+                    <td>Computer Engineering</td>
+                    <td>Shri. T. K. Gawali</td>
+                </tr>
+                <tr>
+                    <td>Electrical Engineering</td>
+                    <td>Smt. M. R. Bachawad</td>
+                </tr>
+                <tr>
+                    <td>Civil Engineering</td>
+                    <td>Shri. V. P. Jadhao</td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'success');
+        </script>
+        {% else %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'error');
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock %}

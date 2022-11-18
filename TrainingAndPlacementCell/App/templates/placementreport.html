@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block file-action %} action="/PlacementReport/" {% endblock %}
+{% block file %}Report{% endblock %}
+{% block link-content %}
+<div class="main-content iiidiv">
+    {% if user.is_superuser %}
+    <a class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#moumodal"><i class="fas fa-plus"></i> Add</a>
+{% endif %}
+
+<table class="table table-bordered mt-3">
+    <thead class="fw-bold">
+        <tr>
+            
+            <td>Title</td>
+            <td>Download</td>
+        </tr>
+    </thead>
+    {% if data|length >= 1 %}
+    
+    {% for i in data %}
+
+    <tbody>
+        <tr>
+            
+            <td>{{i.title}}</td>
+            <td><a href="../../media/{{i.report}}">Download</a></td>
+        </tr>
+    </tbody>
+    
+    {% endfor %}
+    
+    {% endif %}
+</table>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'success');
+        </script>
+        {% else %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'error');
+        </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock link-content %}

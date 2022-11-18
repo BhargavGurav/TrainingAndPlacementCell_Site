@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block link-content %}
+<div class="main-content iiidiv">
+    <h1 class="h1" style="font-family: cursive;">Profile</h1>
+    <div class="d-flex justify-content-center mt-4">
+        <div class="col-lg-8 col-md-9 col-sm-10 col-12" id="profile-table">
+            <table class="table table-bordered table-info">
+                <tr>
+                    <td class="fw-bold">Name</td>
+                    <td>{{ data.name }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Email</td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">PRN</td>
+                    <td>{{ data.prn }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Branch</td>
+                    <td>{{ data.branch }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">CGPA</td>
+                    <td>{{ data.cgpa }}</td>
+                </tr>
+                <tr>
+                    <td class="fw-bold">Passing Year</td>
+                    <td>{{ data.passing_year }}</td>
+                </tr><tr>
+                    <td class="fw-bold">Resume</td>
+                    <td><a href="../../media/{{data.resume}}" target="_blank">Click</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+</div>
+{% endblock link-content %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block home-btn %}
+<a class="btn btn-outline-primary me-2" href="{% url 'home' %}">Back</a>
+{% endblock %}
+{% block data %}
+<div class="container-fluid" id="students-box">
+    <div class="row d-flex justify-content-center p-5">
+        <div class="col-lg-10" id="student-table">
+            <!-- <div class="col-12">
+                <form action="" method="GET">
+                    <div class="input-group input-group-sm mb-3 mt-4">
+                        <input type="text" name="q" class="form-control" placeholder="Search here..." value="{{ request.GET.q }}"> 
+                        <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+
+                         <select name="order" class="ms-3">
+                            <option value="prn">PRN</option>
+                            <option value="cgpa">CGPA</option>
+                            <option value="branch">Branch</option>
+                            <option value="passing_year">Passing Year</option>
+                        </select> 
+
+                         <input type="number" class="ms-2" title="limit to students added to downloding file" name="number" value="{{ request.GET.limit }}"> 
+                        
+                    </div>
+                </form>
+            </div> -->
+            <table class="table table-bordered" id='student'>
+                <thead class="fw-bold">
+                    <tr>
+                        <td>Name</td>
+                        <!-- <td>Email</td> -->
+                        <td>PRN</td>
+                        <td>Branch</td>
+                        <td>CGPA</td>
+                        <td>Passing Year</td>
+                        <td>Resume</td>
+                    </tr>
+                </thead>
+                {% if data|length >= 1 %}
+                
+                <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{ i.name }}</td>
+                        <!-- <td>{{ j.email }}</td> -->
+                        <td>{{ i.prn }}</td>
+                        <td>{{ i.branch }}</td>
+                        <td>{{ i.cgpa }}</td>
+                        <td>{{ i.passing_year }}</td>
+                        <td><a href="../../media/{{i.resume}}" target="_blank">View</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+                {% endif %}
+            </table>
+            <div class="col-12">
+                <a class="btn btn-outline-success float-end" href="../../media/Students.csv">Download</a>
+            </div> 
+
+            {% comment %} <nav class="mt-4">
+                {% if data.has_other_pages %}
+                <ul class="pagination justify-content-left">
+                    {% if data.has_previous %}
+                    <a href="?page=1" class="btn btn-outline-primary mb-4" style="width: 60px; border: 1px solid #d3d3d3; border-radius: 2px;">First</a>
+                    <li class="page-item"><a href="?page={{ data.previous_page_number }}" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                    {% else %}
+                    <li class="page-item disabled"></li>
+                    {% endif %}
+                   
+                    {% for i in data.paginator.page_range %}
+                        {% if data.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+                        {% else %}
+                        <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+    
+                    {% if data.has_next %}
+                    <li class="page-item"><a href="?page={{ data.next_page_number }}" class="page-link" ><i class="fas fa-angle-double-right"></i></a></li>
+                    <a href="?page={{ data.paginator.num_pages }}" class="btn btn-outline-primary mb-4" style="width: 60px; border: 1px solid #d3d3d3; border-radius: 2px; border-left: none;">Last</a>
+                    {% else %}
+                    <li class="page-item disabled"></li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </nav> {% endcomment %}
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

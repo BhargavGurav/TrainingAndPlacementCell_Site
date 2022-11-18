@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block login-btn %}{% endblock %}
+{% block home-btn %}
+<a class="btn btn-outline-primary me-2" href="{% url 'home' %}">Back</a>
+{% endblock %}
+{% block data %}
+<div class="container-fluid  " id="login-container">
+    <div class="row d-flex justify-content-center align-items-center" id="login-row">
+        <div class="col-lg-5 col-md-8 col-sm-9 col-12 ">
+            <div class="login-form p-4">
+                <form action="" method="post">
+                    <div class="col-12 btn btn-dark"><i class="fas fa-lock"></i> Login</div>
+                    {% csrf_token %}
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold">Username</span>
+                        <input type="text" name="username" class="form-control" id="">
+                    </div>
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold">Password</span>
+                        <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group mt-2">
+                        <input type="checkbox" onclick="viewer()"><span class="text-light">&nbsp; click to see password</span>
+                    </div>
+                    <div class="form-group d-grid mt-2">
+                        <input type="submit" value="Login" class="btn btn-success">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'success');
+        </script> 
+        {% else %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('Error', m, 'error');
+        </script>
+            
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<script>
+    function viewer(){
+        let password = document.getElementById('password');
+        if (password.type == 'password'){
+            password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    }
+</script>
+{% endblock data %}

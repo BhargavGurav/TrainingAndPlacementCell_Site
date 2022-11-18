@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block register-btn %}{% endblock %}
+{% block home-btn %}
+<a class="btn btn-outline-primary me-2" href="{% url 'home' %}">Back</a>
+{% endblock %}
+{% block data %}
+<div class="container-fluid" id="register-container">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-lg-7 col-md-8 col-sm-10">
+            <div id="register-form">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="col-12 btn btn-dark">Registration Form</div>
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold side-label">Name</span>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold side-label">Email-ID</span>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold side-label">Passing Year</span>
+                        <input type="text" class="form-control" name="year">
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <span class="input-group-text side-label fw-bold">Branch</span>
+                            <select name="branch" id="" class="form-control" {% block branch %}{% endblock %}>
+                                <option value="Computer">Computer</option>
+                                <option value="Electrical">Electrical</option>
+                                <option value="Civil">Civil</option>
+                                <option value="Instrumentation">Instrumentation</option>
+                                <option value="Mechanical">Mechanical</option>
+                                <option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
+                            </select>
+                    </div>
+
+                    <div class="input-group mt-3 d-flex justify-content-between">
+                        <div class="col-md-5">
+                            <span class="input-group-text fw-bold">CGPA</span>
+                            <input type="number" step="0.01" class="form-control" name="cgpa">
+                        </div>
+                        <div class="col-md-5">
+                            <span class="input-group-text fw-bold">PRN</span>
+                            <input type="text" class="form-control" name="prn">
+                        </div>
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold side-label">Resume</span>
+                        <input type="file" class="form-control" name="resume">
+                    </div>
+
+                    <div class="input-group mt-3">
+                        <span class="input-group-text fw-bold side-label">Password</span>
+                        <input type="password" class="form-control" name="password" id="pass">
+                    </div>
+
+                    <div class="form-group mt-1">
+                        <input type="checkbox" onclick="viewer()"><span class="text-dark">&nbsp; click to see password</span>
+                    </div>
+
+                    <div class="form-group d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-outline-dark">Register</button>
+                        <a class="fw-bold" data-bs-toggle="modal" data-bs-target="#recruitermodal" style="cursor: pointer;">Recruiter? click here to register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- ************************************ Recruiter Registration ***************************-->
+        <div class="modal" id="recruitermodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span><i class="fas fa-user fa-2x"></i><span class="fw-bold fs-5"> Register</span></span>
+                        <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/recruiter/" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mt-2">
+                                <span class="input-group-text fw-bold">Username</span>
+                                <input type="text" name='username' class="form-control">
+                            </div>
+                            <div class="input-group mt-2">
+                                <span class="input-group-text fw-bold">Password</span>
+                                <input type="password" name="password" class="form-control" id="pass2">
+                            </div>
+                            <div class="form-group mt-2">
+                                <input type="checkbox" onclick="shower()"><span class="text-dark">&nbsp; click to see password</span>
+                            </div>
+                            <div class="form-group mt-2 d-grid">
+                                <button type="submit" class="btn btn-outline-info">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+<script>
+    function viewer(){
+        let password = document.getElementById('pass');
+        if (password.type == 'password'){
+            password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    }
+    function shower(){
+        let password = document.getElementById('pass2');
+        if (password.type == 'password'){
+            password.type = 'text';
+        }else{
+            password.type = 'password';
+        }
+    }
+</script>
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('', m, 'success');
+        </script> 
+        {% else %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            var m = '{{message}}';
+            swal('Error', m, 'error');
+        </script>
+            
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% endblock data %}

@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  }
+  body{
+    background: #f2f2f2;
+  }
+  #navbar{
+    box-shadow: 0 0 8px 0 gray;
+    background: rgba(0, 0,0, .8);
+  }
+  #vertical-nav{
+    position: sticky;
+    left: 0;
+    top: 93px;
+  }
+
+  .main-content{
+    box-shadow: 0 -4px 8px 0 gray;
+  }
+  @media screen and (max-width: 576px){
+    #page-content{
+      margin-top: 10px;
+    }
+
+    #vertical-nav{
+      position: relative;
+      top: 0;
+    }
+  }
+  #vertical-nav ul{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  #vertical-nav ul li{
+    list-style-type: none;
+    margin: 10px 5px;
+  }
+  #vertical-nav ul li a{
+    text-decoration: none;
+    font-size: 22px;
+  }
+  #vertical-nav ul li a:hover{
+    transition-duration: .7s;
+    color: coral;
+
+  }
+  
+/***************************************
+              III Cell
+***************************************/
+.h3{
+  color: brown;
+}
+
+.h1{
+  padding-top: 2rem;
+  text-align: center;
+  
+}
+
+.iiidiv{
+  padding: 35px;
+  display: flexbox;
+} 
+
+/***************************************
+          Placement Procedure
+***************************************/
+#placementul li, #tandpul li, #careerul li{
+  margin-top: 10px;
+}
+/***************************************
+          Contact us
+***************************************/
+#contactus{
+  /* margin-top: 10px; */
+  background: rgba(0, 0,0, .8);
+}
+#links a{
+  color: tomato;
+  text-decoration: none;
+}
+#links li{
+  margin: 2px;
+  list-style-type: none;
+}
+#links a:hover{
+  color: aquamarine;
+  transition-duration: .6s;
+  border-bottom: 1px solid white;
+}
+#contact-table-box, #tpacti-box, #programs-box, #profile-table, #student-table{
+  overflow-x: auto;
+}
+/***************************************
+          LOGIN 
+***************************************/
+#login-container{
+  position: relative;
+  height: 75vh;
+  margin-bottom: 0;
+  
+  background-image: url(../images/loginbag.jpg);
+  background-size: 100% 100%;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+#login-container::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0,0, .5);
+}
+#login-row{
+  position: relative;
+  height: 100%;
+}
+.login-form{
+  border: 1px solid white;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .2);
+}
+@media screen and (min-width: 991px){
+  #logoutmodal, #moumodal, #recruitermodal{
+    position: absolute;
+    top: 30vh;
+  }
+}
+
+/***************************************
+          REGISTER 
+***************************************/
+#register-container{
+  padding: 2.5rem;
+  height: 100%;
+}
+#register-container .row{
+  height: 100%;
+}
+.side-label{
+  width: 120px;
+}
+#register-form{
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+  background: rgba(0, 0,0, .3);
+  box-shadow: 0 8px 16px 0 gray;
+}
+/***************************************
+          STUDENTS 
+***************************************/
+#students-box{
+  min-height: 36vh;
+}
+
+/***************************************
+          Team 
+***************************************/
+.team-card{
+  border: 1px solid #fff;
+  background-color: rgba(117, 152, 189, 0.568);
+  border-radius: 7px;
+  padding: 15px;
+
+  box-shadow: 0 8px 16px 0 gray;
+}
+.team-img{
+  display: flex;
+  justify-content: center;
+}
+.team-card img{
+  height: 250px;
+  width: 250px;
+  border-radius: 15px;
+
+}
+.team-card h4{
+  text-align: center;
+  margin-top: 15px;
+}
+.team-card .user-links a{
+  color: #fff;
+}
+.team-card .user-links a:hover{
+  color:rgba(0, 0,0, .5);
+  transition-duration: .7s;
+}

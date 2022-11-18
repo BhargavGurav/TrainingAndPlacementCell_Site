@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- head icon  -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="shortcut icon" href="{% static 'images/logo.ico' %}">
+
+    <!-- bootstrap 5 css  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- datatables bootstrap  -->
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+    <!-- fontawesome  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- aos css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-1cK78a1o+ht2JcaW6g8OXYwqpev9+6GqOkz9xmBN9iUUhIndKtxwILGWYOSibOKjLsEdjyjZvYDq/cZwNeak0w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- user css  -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>T&P Cell, GCOEJ</title>
+</head>
+<body>
+    <div class="container-fluid sticky-top" id="navbar">
+        <div class="row p-4">
+            <div class="col-md-8 ms-auto">
+                <img src="{% static 'images/nav-logo.jpg' %}" style="height: 45px; width: 45px; border-radius: 50%;" alt="">
+                <span class="text-light fs-4 ms-2">Training and Placement Cell, GCOEJ</span>
+            </div>
+            <div class="col-md-4">
+                <div class="float-end">
+                    {% block home-btn %}{% endblock %}
+                    {% block register-btn %}
+                        <a href="{% url 'register' %}" class="btn btn-outline-warning me-2">Register</a>
+                    {% endblock %}
+                    {% block team-btn %}
+                    <a href="{% url 'team' %}" class="btn btn-outline-light text-decoration-none">Team</a>
+                    {% endblock %}
+                    {% if not user.is_authenticated %}
+                        {% block login-btn %}
+                        <a class="btn btn-outline-info ms-1" href="{% url 'loginuser' %}">Login</a>
+                        {% endblock %}
+                    {% else %}
+                        <a class="btn btn-outline-danger ms-1"  data-bs-toggle="modal" data-bs-target="#logoutmodal">Logout</a>
+                    {% endif %}
+                </div>   
+            </div>
+        </div>
+    </div>
+    {% block data %}
+    <div class="container-fluid mt-4 ">
+        <div class="row d-flex justify-content-between">
+            <div class="col-lg-4 col-md-3">
+                <div class="main-content pt-3 px-1" id="vertical-nav">
+                    <ul>
+                        <li><a href="{% url 'home' %}">About T & P Cell</a></li>
+                        <li><a href="{% url 'placementprocedure' %}">Placement Procedure</a></li>
+                        <li><a href="{% url 'iiicell' %}">III Cell</a></li>
+                        <li><a href="{% url 'tandpactivity' %}">T & P Activity</a></li>
+                        <li><a href="{% url 'placementreport' %}">Placement Report</a></li>
+                        <li><a href="{% url 'broucher' %}">Brouchers</a></li>
+                        <li><a href="{% url 'mou' %}">MoU signed</a></li>
+                        <li><a href="{% url 'contact' %}">Contact us</a></li>
+                        {% if user.is_authenticated %}
+                            {% if user.is_staff %}
+                                <li><a href="{% url 'students' %}">Students</a></li>
+                            {% else %}
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="col-lg-8 col-md-9" id="page-content">
+                {% block link-content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <div class="container-fluid" id="contactus">
+        <div class="row contactus-content">
+            <div class="col-lg-6 p-4 text-light">
+                <p>Visit College Site : &nbsp;<span><a class="btn btn-outline-warning" href="https://www.gcoej.ac.in/site/" target="_blank">Visit</a></span> </p>
+                <p>Visit Departments</p>
+                <ul id="links">
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzE=" target="_blank">Computer Department</a></li>
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzI=" target="_blank">Mechanical Department</a></li>
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzU=" target="_blank">Electrical Department</a></li>
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzY=" target="_blank">E & TC Department</a></li>
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzQ=" target="_blank">Instrumentation Department</a></li>
+                    <li><a href="https://www.gcoej.ac.in/site/?page=MzM=" target="_blank">Civil Department</a></li>
+                    <li><a href="https://mis.gcoej.ac.in/" target="_blank">Visit MIS</a></li>
+                </ul>
+                
+            </div>
+            <div class="col-lg-6 p-4">
+                <div class="col-12 text-center text-light fs-5">Send us your Query</div>
+                <form action="/contact_us/" method="post">{% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Name" name="name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        <input type="email" class="form-control" placeholder="Email" name="contact-email">
+                    </div>
+                    <div class="input-group mb-3">
+                        <textarea rows="5" class="form-control" placeholder="Message" name="message"></textarea>
+                    </div>
+                    <div class="form-group mb-2 d-grid">
+                        <button class="btn btn-outline-light text-center">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ************************** Logout modal ************************-->
+    <div class="modal" id="logoutmodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span><i class="fas fa-sign-out-alt fa-2x"></i><span class="text-danger fs-4"> Logout</span></span>
+                    <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="fs-4">Sure want to sign-out?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                    <a href="{% url 'logoutuser' %}" class="btn btn-danger">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ************************* File adding modal ***********************-->
+        <div class="modal" id="moumodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span><i class="fas fa-plus fa-2x"></i><span class="fw-bold fs-5"> Add {% block file %} {% endblock %}</span></span>
+                        <button class="btn btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form {% block file-action %} action="" {% endblock %} method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="input-group mt-2">
+                                <span class="input-group-text">Title</span>
+                                <input type="text" name="title" class="form-control">
+                            </div>
+                            <div class="input-group mt-2">
+                                <span class="input-group-text">File</span>
+                                <input type="file" name="file" class="form-control">
+                            </div>
+                            <div class="form-group mt-2 float-end">
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- jquery  -->
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    
+    <!-- boostrap 5 js  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- datatables js  -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+    <!-- inputmask  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.7/jquery.inputmask.min.js" integrity="sha512-jTgBq4+dMYh73dquskmUFEgMY5mptcbqSw2rmhOZZSJjZbD2wMt0H5nhqWtleVkyBEjmzid5nyERPSNBafG4GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- aos  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- sweetalert  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+    <!-- user js  -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+<script>
+    AOS.init();
+</script>
+<script>
+    $('#student').DataTable({
+        paging: true,
+        pagelength: 5,
+        lengthChange: true,
+        autoWidth: true,
+        searching: true,
+        bInfo: true,
+        bSort: true,
+    })
+</script>
+</body>
+</html>
