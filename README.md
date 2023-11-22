@@ -2,6 +2,7 @@
 Welcome to the Training and Placement Cell website for Government College of Engineering, Jalgaon, Maharashtra. This Django-based platform serves as an interactive hub for college authorities, recruiters, and students to streamline the placement process.
 
 **Features**
+
 *User Types and Privileges*
 1. College Authorities
 Access to administrative features.
@@ -25,6 +26,7 @@ Provide necessary information and upload resumes for recruitment.
 4. Recruiter Zone: Access for recruiters to view student profiles and recruitment-related information.
 
 **Usage**
+
 *Setup*
 1. Clone this repository.
 2. Install dependencies using pip install -r requirements.txt.
